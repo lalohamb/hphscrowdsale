@@ -168,4 +168,10 @@ contract Crowdsale {
     function withdrawUnsoldTokens() public onlyOwner afterSaleClosed {
         require(token.transfer(owner, token.balanceOf(address(this))), "Transfer failed");
     }
+
+    // Add this function to your Crowdsale contract
+    function setPrice(uint256 _newPrice) public onlyOwner {
+        require(_newPrice > 0, "Price must be greater than zero");
+    price = _newPrice;
+    }
 }

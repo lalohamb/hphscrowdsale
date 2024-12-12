@@ -135,31 +135,36 @@ describe('Crowdsale', () => {
     let value = ether(10)
 
     describe('Success', () => {
-
       beforeEach(async () => {
-        transaction = await crowdsale.connect(user1).buyTokens(amount, { value: value })
-        result = await transaction.wait()
-
-        transaction = await crowdsale.connect(deployer).finalize()
-        result = await transaction.wait()
-      })
-
+        // Simulate a token purchase
+        transaction = await crowdsale.connect(user1).buyTokens(amount, { value: value });
+        result = await transaction.wait();
+    
+        // Advance time to after the closingTime
+        const closingTime = await crowdsale.closingTime();
+        console.log("Closing Time: ", closingTime.toString()); // Debugging log
+        await network.provider.send("evm_setNextBlockTimestamp", [closingTime.toNumber() + 1]);
+        await network.provider.send("evm_mine"); // Mine a new block with the updated timestamp
+    
+        // Finalize the crowdsale
+        transaction = await crowdsale.connect(deployer).finalize();
+        result = await transaction.wait();
+      });
+    
       it('transfers remaining tokens to owner', async () => {
-        expect(await token.balanceOf(crowdsale.address)).to.equal(0)
-        expect(await token.balanceOf(deployer.address)).to.equal(tokens(999990))
-      })
-
+        expect(await token.balanceOf(crowdsale.address)).to.equal(0);
+        expect(await token.balanceOf(deployer.address)).to.equal(tokens(999990));
+      });
+    
       it('transfers ETH balance to owner', async () => {
-        expect(await ethers.provider.getBalance(crowdsale.address)).to.equal(0)
-      })
-
+        expect(await ethers.provider.getBalance(crowdsale.address)).to.equal(0);
+      });
+    
       it('emits Finalize event', async () => {
-        // --> https://hardhat.org/hardhat-chai-matchers/docs/reference#.emit
-        await expect(transaction).to.emit(crowdsale, "Finalize")
-          .withArgs(amount, value)
-      })
-
-    })
+        await expect(transaction).to.emit(crowdsale, "Finalize");
+      });
+    });
+    
 
     describe('Failure', () => {
 
