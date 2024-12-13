@@ -2,7 +2,7 @@
 
 1. Two failing test errors due to block-time variations(expected).
 2. Need to add Front-end js code to interact with crowdsale. Use Bolt.new create file paths, insert contract and deployment script
-3. Deployment script from which project1 or project2 ? 
+3. Deployment script completed 12/13 Project2 script (not orig file).
 4. Create Landing page front-end(description)
 5. 
 6. Wire-up thirdweb.com wallet code (final task). 
