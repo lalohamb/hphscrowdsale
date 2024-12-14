@@ -2,10 +2,17 @@
 
 1. Two failing test errors due to block-time variations(expected).
 2. Need to add Front-end js code to interact with crowdsale. Use Bolt.new create file paths, insert contract and deployment script
-3. Deployment script completed 12/13 Project2 script (not orig file).
-4. Create Landing page front-end(description)
+3. COMPLETED--TEST scripts (CHECK SCALING).
+4. COMPLETED--Deployment script completed 12/13; Project2 script (not orig file).
+
+4. Create prompt for path in bolt.net  
+5. Create components from bolt.new.
 5. 
-6. Wire-up thirdweb.com wallet code (final task). 
+6. Create Landing page front-end(description)
+7. Create third web.com wallet.
+8. Check Scaling issue
+
+7. Wire-up thirdweb.com wallet code (final task). 
 
 # Getting Started with Create React App
 

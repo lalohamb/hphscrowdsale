@@ -7,7 +7,6 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
-    "react-bootstrap": "^5.2.0",
     "ethers": "^5.7.0"
   },
   "scripts": {
